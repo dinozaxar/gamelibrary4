@@ -19,7 +19,7 @@ namespace gamelibrary4.Views
             ("sudoku",      "Судоку",  "🧩"),
             ("2048",        "2048",    "🔢"),
             ("tictactoe",   "Крестики","❌"),
-            ("hangman",     "Виселица","🎯"),
+            ("hangman",     "Висsлица","🎯"),
             ("sudoku",      "Судоку",  "🧩"),
         };
 
