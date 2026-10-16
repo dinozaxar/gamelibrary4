@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="gamelibrary4.Views.RecordsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             d:DesignHeight="720" d:DesignWidth="1120">
+
+    <Grid Margin="32,24">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <StackPanel Grid.Row="0" Margin="0,0,0,18">
+            <TextBlock Text="🏆 Рекорды"
+                       FontSize="26" FontWeight="Bold"
+                       Foreground="{DynamicResource TextBrush}"/>
+            <TextBlock Text="Достижения по всем играм"
+                       FontSize="13"
+                       Foreground="{DynamicResource MutedTextBrush}"
+                       Margin="0,4,0,0"/>
+        </StackPanel>
+
+        <!-- Вкладки игр -->
+        <Border Grid.Row="1"
+                Background="{DynamicResource SurfaceSoftBrush}"
+                BorderBrush="{DynamicResource CoralBrush}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="6"
+                Margin="0,0,0,14"
+                Opacity="0.95">
+            <StackPanel x:Name="GameTabsPanel" Orientation="Horizontal"/>
+        </Border>
+
+        <!-- Панель сортировки -->
+        <Border Grid.Row="2"
+                Background="{DynamicResource SurfaceBrush}"
+                BorderBrush="{DynamicResource CoralBrush}"
+                BorderThickness="1"
+                CornerRadius="14"
+                Padding="16,10"
+                Margin="0,0,0,14"
+                Opacity="0.95">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="Сортировка:" FontSize="13"
+                               Foreground="{DynamicResource MutedTextBrush}"
+                               VerticalAlignment="Center" Margin="0,0,12,0"/>
+
+                    <ComboBox x:Name="SortCombo"
+                              Width="220"
+                              SelectionChanged="SortCombo_SelectionChanged">
+                        <ComboBoxItem Content="Очки: по убыванию" Tag="ScoreDesc"/>
+                        <ComboBoxItem Content="Очки: по возрастанию" Tag="ScoreAsc"/>
+                        <ComboBoxItem Content="Время: по возрастанию" Tag="TimeAsc"/>
+                        <ComboBoxItem Content="Время: по убыванию" Tag="TimeDesc"/>
+                        <ComboBoxItem Content="Дата: сначала новые" Tag="DateDesc"/>
+                        <ComboBoxItem Content="Дата: сначала старые" Tag="DateAsc"/>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <CheckBox x:Name="OnlyMineCheck"
+                              Content="Только мои рекорды"
+                              Foreground="{DynamicResource TextBrush}"
+                              VerticalAlignment="Center"
+                              Checked="OnlyMineCheck_Changed"
+                              Unchecked="OnlyMineCheck_Changed"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Список рекордов -->
+        <Border Grid.Row="3"
+                Background="{DynamicResource SurfaceSoftBrush}"
+                BorderBrush="{DynamicResource CoralBrush}"
+                BorderThickness="1"
+                CornerRadius="16"
+                Padding="6"
+                Opacity="0.95">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <!-- Шапка таблицы -->
+                <Grid Grid.Row="0" Margin="14,12,14,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="120"/>
+                        <ColumnDefinition Width="160"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Text="#" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock Grid.Column="1" Text="Игрок" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock Grid.Column="2" Text="Очки" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock Grid.Column="3" Text="Время" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+                    <TextBlock Grid.Column="4" Text="Дата" FontSize="12" FontWeight="SemiBold"
+                               Foreground="{DynamicResource MutedTextBrush}"/>
+                </Grid>
+
+                <!-- Пустой список -->
+                <TextBlock x:Name="EmptyText"
+                           Grid.Row="1"
+                           Text="Пока нет рекордов. Сыграйте в игру, чтобы записать первый результат!"
+                           Foreground="{DynamicResource MutedTextBrush}"
+                           FontSize="13"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"
+                           Visibility="Collapsed"/>
+
+                <!-- Список -->
+                <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+                    <ItemsControl x:Name="RecordsList">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border Background="{DynamicResource SurfaceBrush}"
+                                        CornerRadius="10"
+                                        Padding="14,10"
+                                        Margin="4,2"
+                                        Opacity="0.85">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="60"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="120"/>
+                                            <ColumnDefinition Width="160"/>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Text="{Binding Rank}"
+                                                   Foreground="{DynamicResource CoralBrush}"
+                                                   FontWeight="Bold" FontSize="14"/>
+                                        <TextBlock Grid.Column="1" Text="{Binding UserLogin}"
+                                                   Foreground="{DynamicResource TextBrush}"
+                                                   FontSize="14"/>
+                                        <TextBlock Grid.Column="2" Text="{Binding Score}"
+                                                   Foreground="{DynamicResource TextBrush}"
+                                                   FontSize="14" FontWeight="SemiBold"/>
+                                        <TextBlock Grid.Column="3" Text="{Binding TimeDisplay}"
+                                                   Foreground="{DynamicResource TextBrush}"
+                                                   FontSize="14"/>
+                                        <TextBlock Grid.Column="4" Text="{Binding DateDisplay}"
+                                                   Foreground="{DynamicResource MutedTextBrush}"
+                                                   FontSize="13"/>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
+            </Grid>
+        </Border>
+    </Grid>
+</UserControl>

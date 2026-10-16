@@ -1,0 +1,77 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- ==================== ПАЛИТРА (ТЁМНАЯ) ==================== -->
+    <Color x:Key="CoralColor">#FFEE4540</Color>
+    <Color x:Key="CrimsonColor">#FFC72C41</Color>
+    <Color x:Key="BurgundyColor">#FF801336</Color>
+    <Color x:Key="PurpleColor">#FF510A32</Color>
+    <Color x:Key="DarkColor">#FF2D142C</Color>
+
+    <Color x:Key="TextColor">#FFF5E8E8</Color>
+    <Color x:Key="MutedText">#FFB89A9A</Color>
+
+    <!-- Поверхности -->
+    <Color x:Key="SurfaceColor">#662D142C</Color>
+    <Color x:Key="SurfaceSoftColor">#332D142C</Color>
+    <Color x:Key="SurfaceDeepColor">#FF2D142C</Color>
+
+    <!-- Игровое поле -->
+    <Color x:Key="BoardBgColor">#FF2D142C</Color>
+    <Color x:Key="CellClosedColor">#FF510A32</Color>
+    <Color x:Key="CellOpenColor">#662D142C</Color>
+    <Color x:Key="CellFlaggedColor">#FFC72C41</Color>
+
+    <!-- Крестики-нолики -->
+    <Color x:Key="XColor">#FFEE4540</Color>
+    <Color x:Key="OColor">#FFFFC18A</Color>
+
+    <!-- Полупрозрачные элементы UI -->
+    <Color x:Key="OverlayWeak">#33FFFFFF</Color>
+    <Color x:Key="OverlayMedium">#55FFFFFF</Color>
+
+    <!-- ==================== КИСТИ ==================== -->
+    <SolidColorBrush x:Key="CoralBrush"    Color="{StaticResource CoralColor}"/>
+    <SolidColorBrush x:Key="CrimsonBrush"  Color="{StaticResource CrimsonColor}"/>
+    <SolidColorBrush x:Key="BurgundyBrush" Color="{StaticResource BurgundyColor}"/>
+    <SolidColorBrush x:Key="PurpleBrush"   Color="{StaticResource PurpleColor}"/>
+    <SolidColorBrush x:Key="DarkBrush"     Color="{StaticResource DarkColor}"/>
+
+    <SolidColorBrush x:Key="TextBrush"      Color="{StaticResource TextColor}"/>
+    <SolidColorBrush x:Key="MutedTextBrush" Color="{StaticResource MutedText}"/>
+    <SolidColorBrush x:Key="AccentBrush"    Color="{StaticResource CoralColor}"/>
+
+    <SolidColorBrush x:Key="SurfaceBrush"     Color="{StaticResource SurfaceColor}"/>
+    <SolidColorBrush x:Key="SurfaceSoftBrush" Color="{StaticResource SurfaceSoftColor}"/>
+    <SolidColorBrush x:Key="SurfaceDeepBrush" Color="{StaticResource SurfaceDeepColor}"/>
+
+    <SolidColorBrush x:Key="BoardBgBrush"     Color="{StaticResource BoardBgColor}"/>
+    <SolidColorBrush x:Key="CellClosedBrush"  Color="{StaticResource CellClosedColor}"/>
+    <SolidColorBrush x:Key="CellOpenBrush"    Color="{StaticResource CellOpenColor}"/>
+    <SolidColorBrush x:Key="CellFlaggedBrush" Color="{StaticResource CellFlaggedColor}"/>
+
+    <SolidColorBrush x:Key="XBrush" Color="{StaticResource XColor}"/>
+    <SolidColorBrush x:Key="OBrush" Color="{StaticResource OColor}"/>
+
+    <SolidColorBrush x:Key="OverlayWeakBrush"   Color="{StaticResource OverlayWeak}"/>
+    <SolidColorBrush x:Key="OverlayMediumBrush" Color="{StaticResource OverlayMedium}"/>
+
+    <!-- Градиенты -->
+    <LinearGradientBrush x:Key="WindowBackground" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Color="{StaticResource DarkColor}"     Offset="0"/>
+        <GradientStop Color="{StaticResource PurpleColor}"   Offset="0.6"/>
+        <GradientStop Color="{StaticResource BurgundyColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <LinearGradientBrush x:Key="AccentGradient" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="{StaticResource CoralColor}"   Offset="0"/>
+        <GradientStop Color="{StaticResource CrimsonColor}" Offset="1"/>
+    </LinearGradientBrush>
+
+    <!-- Градиент змейки (голова → хвост) -->
+    <LinearGradientBrush x:Key="SnakeHeadBrush" StartPoint="0,0" EndPoint="1,1">
+        <GradientStop Color="#FFEE4540" Offset="0"/>
+        <GradientStop Color="#FF801336" Offset="1"/>
+    </LinearGradientBrush>
+
+</ResourceDictionary>

@@ -1,0 +1,101 @@
+﻿<Window x:Class="gamelibrary4.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:views="clr-namespace:gamelibrary4.Views"
+        Title="Мини-Игры"
+        Height="820" Width="1160"
+        WindowStartupLocation="CenterScreen"
+        Background="{DynamicResource WindowBackground}"
+        MinHeight="700" MinWidth="1000"
+        Closing="Window_Closing"
+        Icon="/Assets/icon.ico">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <!-- Верхнее меню (без изменений) -->
+        <Border Grid.Row="0" Padding="24,14" Background="{DynamicResource SurfaceSoftBrush}">
+            <Grid>
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <TextBlock Text="🎮" FontSize="22" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <TextBlock Text="Мини-Игры" FontSize="20" FontWeight="Bold"
+                               Foreground="{StaticResource TextBrush}" VerticalAlignment="Center"/>
+                </StackPanel>
+
+                <StackPanel x:Name="MainMenuPanel"
+                            Orientation="Horizontal"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center">
+                    <Button x:Name="HomeButton" Content="Главная"
+                            Style="{StaticResource MenuButton}"
+                            Click="HomeButton_Click"/>
+                    <Button x:Name="FavoritesButton" Content="⭐ Избранное"
+                            Style="{StaticResource MenuButton}"
+                            Click="FavoritesButton_Click"/>
+                    <Button x:Name="DocsButton" Content="📖 Документация"
+                            Style="{StaticResource MenuButton}"
+                            Click="DocsButton_Click"/>
+                    <Button x:Name="RecordsButton" Content="Рекорды"
+                            Style="{StaticResource MenuButton}"
+                            Click="RecordsButton_Click"/>
+                    <Button Content="Все игры" Style="{StaticResource MenuButton}"/>
+                    <Button Content="Настройки" Style="{StaticResource MenuButton}"/>
+                </StackPanel>
+
+                <StackPanel x:Name="UserPanel"
+            Orientation="Horizontal"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Center"
+            Visibility="Collapsed">
+
+                    <!-- Кнопка-профиль с аватаркой -->
+                    <Button x:Name="ProfileButton"
+            Style="{StaticResource FlatButton}"
+            Padding="8,4"
+            Margin="0,0,8,0"
+            Click="ProfileButton_Click"
+            ToolTip="Открыть профиль">
+                        <StackPanel Orientation="Horizontal">
+                            <!-- Мини-аватарка -->
+                            <Grid Width="28" Height="28" Margin="0,0,8,0">
+                                <Ellipse x:Name="MiniAvatarEllipse"
+                         Fill="{DynamicResource OverlayWeakBrush}"
+                         Stroke="{StaticResource CoralBrush}"
+                         StrokeThickness="1"/>
+                                <TextBlock x:Name="MiniAvatarPlaceholder"
+                           Text="👤" FontSize="14"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center"/>
+                            </Grid>
+                            <TextBlock x:Name="CurrentUserText" Text="—"
+                       FontSize="13"
+                       Foreground="{StaticResource TextBrush}"
+                       VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="ThemeButton"
+                        Content="🌙"
+                        Style="{StaticResource FlatButton}"
+                        Padding="10,6"
+                        Margin="0,0,8,0"
+                        Click="ThemeButton_Click"
+                        ToolTip="Переключить тему"/>
+                    <Button Content="Выйти"
+            Style="{StaticResource FlatButton}"
+            Padding="12,6"
+            Click="LogoutButton_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+        <!-- Контент -->
+        <ContentControl x:Name="ContentHost" Grid.Row="1"/>
+
+        <!-- Панель музыки -->
+        <views:MusicBarView x:Name="MusicBar" Grid.Row="2"/>
+    </Grid>
+</Window>
